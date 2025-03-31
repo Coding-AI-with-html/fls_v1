@@ -8,3 +8,23 @@ dependencies = []
 
 [tool.uv.workspace]
 members = ["src/fls_show", "src/fls_cli"]
+
+[dependency-groups]
+dev = [
+    "deptry>=0.23.0",
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.6.10",
+    "mkdocstrings[python]>=0.29.1",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.0.0",
+]
+
+[tool.coverage.report]
+skip_empty = true
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
