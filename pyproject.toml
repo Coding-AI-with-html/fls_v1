@@ -7,4 +7,4 @@ requires-python = ">=3.12"
 dependencies = []
 
 [tool.uv.workspace]
-members = ["src/fls_show"]
+members = ["src/fls_show", "src/fls_cli"]
