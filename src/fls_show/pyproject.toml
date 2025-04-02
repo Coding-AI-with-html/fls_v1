@@ -9,8 +9,10 @@ authors = [
 requires-python = ">=3.12"
 dependencies = []
 
-[project.scripts]
-fls-show = "fls_show:main"
+[project.gui-scripts]
+fls-show = "fls_show.fls_show:main"
+
+
 
 [build-system]
 requires = ["hatchling"]
