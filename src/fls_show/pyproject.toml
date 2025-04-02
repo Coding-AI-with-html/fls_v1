@@ -10,7 +10,7 @@ requires-python = ">=3.12"
 dependencies = []
 
 [project.gui-scripts]
-fls-show = "fls_show.fls_show:main"
+fls-show = "fls_show:main"
 
 
 
