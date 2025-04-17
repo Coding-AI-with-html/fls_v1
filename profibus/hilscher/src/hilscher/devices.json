@@ -1,0 +1,27 @@
+{
+    "CIFX 70E-DP": [
+      "Product Name: CIFX 70E-DP",
+      "Part Number: 1259.410",
+      "Brief Description: PC Card cifX Low Profile PCI Express PROFIBUS DP Master or Slave or PROFIBUS MPI Device",
+      "Function: Communication interface with PCI Express and PROFIBUS interface",
+      "Communication Controller: Type - netX 100",
+      "RAM: 8 MB SDRAM",
+      "FLASH: 4 MB serial Flash EPROM",
+      "Supply Voltage: +3.3 V DC ±5 %",
+      "Max Current: 800 mA (at 3.3 V)",
+      "Connector: via PCI Express Bus",
+      "Bus Type: PCI Express, One Lane Port",
+      "Data Access: DPM or DMA (Direct Memory Access)",
+      "Dual-port Memory Size: 64 KB",
+      "Data Width: 32 bit",
+      "Transmission Rate: 2 GBit/s",
+      "Communication Standard: PROFIBUS",
+      "Interface Type: RS-485, isolated",
+      "Comm Connector: D-Sub, female, 9-pin",
+      "Isolation Voltage: 1000 V DC (tested for 1 minute)",
+      "SYS LED: System status LED",
+      "COM LED: Communication status (duo LED)",
+      "Operating Element: Rotary switch slot number (card ID)"
+    ]
+  }
+  

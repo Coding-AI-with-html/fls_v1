@@ -1,5 +1,5 @@
 [project]
-name = "fls-show"
+name = "hilscher"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -9,22 +9,9 @@ authors = [
 requires-python = ">=3.12"
 dependencies = []
 
-[project.gui-scripts]
-fls-show = "fls_show:main"
-
-
+[project.scripts]
+hilscher = "hilscher:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-[dependency-groups]
-dev = [
-    "matplotlib>=3.10.1",
-    "numpy>=2.2.4",
-    "opencv-python>=4.11.0.86",
-    "pillow>=11.1.0",
-    "pydantic>=2.11.1",
-    "pystray>=0.19.5",
-    "pywin32>=304",
-]
