@@ -1,0 +1,1 @@
+2025-04-23 17:07:41,045 - __main__ - INFO - This is a message from my_module.

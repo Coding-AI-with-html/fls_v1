@@ -19,10 +19,7 @@ def load_device_data(path="devices.json"):
     with open(path, "r") as f:
         return json.load(f)
 
-# Optional CLI
-
 def main():
-    print("Current working directory:", os.getcwd())
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--product", default="CIFX 70E-DP")

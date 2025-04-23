@@ -7,12 +7,12 @@ authors = [
     { name = "Coding-AI-with-html", email = "krekeris440@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "utils",
+]
 
 [project.gui-scripts]
 fls-show = "fls_show:main"
-
-
 
 [build-system]
 requires = ["hatchling"]
@@ -28,3 +28,6 @@ dev = [
     "pystray>=0.19.5",
     "pywin32>=304",
 ]
+
+[tool.uv.sources]
+utils = { workspace = true }
