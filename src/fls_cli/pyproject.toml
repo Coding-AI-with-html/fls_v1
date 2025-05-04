@@ -7,7 +7,10 @@ authors = [
     { name = "Coding-AI-with-html", email = "krekeris440@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "hilscher",
+    "utils",
+]
 
 [project.scripts]
 fls-cli = "fls_cli:main"
@@ -15,3 +18,7 @@ fls-cli = "fls_cli:main"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.uv.sources]
+utils = { workspace = true }
+hilscher = { workspace = true }

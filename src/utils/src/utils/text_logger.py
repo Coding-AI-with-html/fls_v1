@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import sys
 import inspect
@@ -8,27 +7,54 @@ from pathlib import Path
 # --- PATH HELPERS ---
 
 def get_startup_path(alternate_path: str = os.getenv('TEMP', '')) -> Path:
+    """
+    Gets the startup path of either the 'frozen' exe or the running python script module.
+
+    Parameters:
+    - alternate_path: str
+        If retrieving the startup path fails, alternate_path will be returned instead.
+
+    Returns:
+    - startup_path: Path
+        An absolute path either to the 'frozen' startup exe or to the startup script module file.
+    """	
     try:
-        if getattr(sys, 'frozen', False):
-            base_dir = os.path.dirname(sys.executable)  # If bundled as EXE
+        if getattr(sys, 'frozen', False):  
+            base_dir = os.path.dirname(sys.executable)         # get folder of EXE startup file
         else:
-            base_dir = os.path.dirname(__file__)  # Normal script path
+            base_dir = os.path.dirname(__file__)  # get current folder of running module script
+
     except:
         base_dir = alternate_path
+
     return Path(base_dir)
 
+
+
 def create_logfile_name(sub_dir: str = 'log', suffix: str = '.log', alternate_fullname: str = 'C:\\_temp_.log') -> Path:
+    """
+    Creates a logfile path based on the module or executable name.
+    """
     try:
         startup_path = get_startup_path()
-        module_name = __file__.split(os.path.sep)[-1]
-        logfile = (Path.joinpath(startup_path, sub_dir) / module_name).with_suffix(suffix)
-    except:
+        if getattr(sys, 'frozen', False):
+            module_name = Path(sys.executable).stem  # <<< THIS!
+        else:
+            module_name = Path(__file__).stem  # <<< ONLY if NOT frozen
+        logfile = (startup_path / sub_dir / module_name).with_suffix(suffix)
+    except Exception as e:
+        print(f"Failed to create logfile name: {e}")
         logfile = Path(alternate_fullname).with_suffix(suffix)
     return logfile
+
 
 # --- ROTATING FILE HANDLER ---
 
 class RotatingTextFileHandler(logging.FileHandler):
+    """
+    Simple line-count based rotating file handler.
+    When the number of lines exceeds max_lines, it clears the file.
+    """
     def __init__(self, filename, max_lines=1000, mode='a', encoding=None, delay=False):
         super().__init__(filename, mode, encoding, delay)
         self.filename = filename
@@ -52,7 +78,8 @@ class RotatingTextFileHandler(logging.FileHandler):
 
     def _reset_file(self):
         try:
-            self.stream.close()
+            if self.stream:
+                self.stream.close()
             with open(self.filename, 'w', encoding=self.encoding or 'utf-8') as f:
                 f.truncate(0)
             self.stream = self._open()
@@ -67,7 +94,7 @@ _logger_registry = {}
 def get_logger(level=logging.DEBUG):
     """
     Returns a logger named after the calling module.
-    Creates it with a RotatingTextFileHandler.
+    Creates it with a RotatingTextFileHandler if not already created.
     """
     caller_frame = inspect.stack()[1]
     module = inspect.getmodule(caller_frame[0])
@@ -98,7 +125,8 @@ def main():
     logger.debug("This is a debug log message.")
     logger.warning("This is a warning log message.")
 
-    print(f"Log file is stored at: {create_logfile_name(sub_dir='log')}")
+    log_file = create_logfile_name(sub_dir='log')
+    print(f"Log file is stored at: {log_file}")
 
 if __name__ == "__main__":
     main()
