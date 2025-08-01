@@ -11,14 +11,26 @@ dependencies = [
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.6.14",
     "mkdocstrings[python]>=0.29.1",
+    "matplotlib>=3.10.1",
+    "numpy>=2.2.4",
+    "opencv-python>=4.11.0.86",
+    "pillow>=11.1.0",
+    "pydantic>=2.11.1",
+    "pystray>=0.19.5",
+    "pywin32>=304",
+    "pyinstaller>=6.14.2",
 ]
 
 [project.scripts]
 core = "core:main"
+fls_cli = "fls_cli:main"
+fls_gui = "fls_gui:main"
+profibus = "profibus:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
 
 [tool.uv.workspace]
 members = [
