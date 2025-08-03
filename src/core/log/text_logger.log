@@ -308,3 +308,305 @@ Logger is defined correctly
 2025-08-01 16:57:53,231 - Image Processor - ERROR - Error 10002: No unprocessed images found.
 Logger is defined correctly
 2025-08-01 16:57:53,232 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-01 17:25:49,687 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-01 17:25:49,699 - FLS_CLI - INFO - Program started
+2025-08-01 17:25:49,707 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-01 17:25:51,709 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-01 17:25:53,712 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-01 17:25:55,715 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-01 17:25:55,717 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-01 17:25:55,717 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-01 17:25:55,717 - FLS_CLI - INFO - Reading from hardware
+2025-08-01 17:25:55,719 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-01 17:25:55,758 - Image Processor - ERROR - Error 10002: No unprocessed images found.
+Logger is defined correctly
+2025-08-01 17:25:55,759 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-01 17:27:56,647 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-01 17:27:56,659 - FLS_CLI - INFO - Program started
+2025-08-01 17:27:56,665 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-01 17:27:58,668 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-01 17:28:00,674 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-01 17:28:02,677 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-01 17:28:02,679 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-01 17:28:02,679 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-01 17:28:02,680 - FLS_CLI - INFO - Reading from hardware
+2025-08-01 17:28:02,681 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-01 17:28:02,730 - Image Processor - ERROR - Error 10002: No unprocessed images found.
+Logger is defined correctly
+2025-08-01 17:28:02,731 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-01 17:37:40,927 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-01 17:37:40,938 - FLS_CLI - INFO - Program started
+2025-08-01 17:37:40,944 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-01 17:37:42,946 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-01 17:37:44,948 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-01 17:37:46,950 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-01 17:37:46,950 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-01 17:37:46,951 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-01 17:37:46,951 - FLS_CLI - INFO - Reading from hardware
+2025-08-01 17:37:46,951 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-01 17:37:46,972 - Image Processor - ERROR - Error 10002: No unprocessed images found.
+Logger is defined correctly
+2025-08-01 17:37:46,972 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-01 17:41:30,763 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-01 17:41:30,774 - FLS_CLI - INFO - Program started
+2025-08-01 17:41:30,781 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-01 17:41:32,784 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-01 17:41:34,788 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-01 17:41:36,790 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-01 17:41:36,791 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-01 17:41:36,792 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-01 17:41:36,792 - FLS_CLI - INFO - Reading from hardware
+2025-08-01 17:41:36,793 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-01 17:41:36,830 - Image Processor - ERROR - Error 10002: No unprocessed images found.
+Logger is defined correctly
+2025-08-01 17:41:36,833 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-01 18:35:16,718 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-01 18:35:16,739 - FLS_CLI - INFO - Program started
+2025-08-01 18:35:16,748 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-01 18:35:18,752 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-01 18:35:20,757 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-01 18:35:22,760 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-01 18:35:22,761 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-01 18:35:22,762 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-01 18:35:22,762 - FLS_CLI - INFO - Reading from hardware
+2025-08-01 18:35:22,763 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-01 18:35:22,810 - FLS_CLI - ERROR - An error occurred Now: failed_processing_result() takes 0 positional arguments but 1 was given
+2025-08-01 18:35:22,816 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-01 18:35:22,817 - FLS_CLI - INFO - --- Run operation completed ---
+2025-08-01 18:35:36,217 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-01 18:35:36,226 - FLS_CLI - INFO - Program started
+2025-08-01 18:35:36,233 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-01 18:35:38,236 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-01 18:35:40,241 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-01 18:35:42,245 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-01 18:35:42,247 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-01 18:35:42,247 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-01 18:35:42,247 - FLS_CLI - INFO - Reading from hardware
+2025-08-01 18:35:42,248 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-01 18:35:42,288 - FLS_CLI - ERROR - An error occurred Now: module 'datetime' has no attribute 'now'
+2025-08-01 18:35:42,302 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-01 18:35:42,302 - FLS_CLI - INFO - --- Run operation completed ---
+2025-08-01 18:35:56,383 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-01 18:35:56,392 - FLS_CLI - INFO - Program started
+2025-08-01 18:35:56,402 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-01 18:35:58,406 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-01 18:36:00,411 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-01 18:36:02,414 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-01 18:36:02,415 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-01 18:36:02,415 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-01 18:36:02,415 - FLS_CLI - INFO - Reading from hardware
+2025-08-01 18:36:02,416 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-01 18:36:02,441 - Image Processor - ERROR - Error 10002: No unprocessed images found.
+Logger is defined correctly
+2025-08-01 18:36:02,442 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-01 18:37:45,288 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-01 18:37:45,299 - FLS_CLI - INFO - Program started
+2025-08-01 18:37:45,308 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-01 18:37:47,311 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-01 18:37:49,316 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-01 18:37:51,318 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-01 18:37:51,319 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-01 18:37:51,319 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-01 18:37:51,319 - FLS_CLI - INFO - Reading from hardware
+2025-08-01 18:37:51,320 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-01 18:37:51,335 - Image Processor - ERROR - Error 10002: No unprocessed images found.
+Logger is defined correctly
+2025-08-01 18:37:51,336 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-01 18:39:03,120 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-01 18:39:03,130 - FLS_CLI - INFO - Program started
+2025-08-01 18:39:03,136 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-01 18:39:05,138 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-01 18:39:07,140 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-01 18:39:09,142 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-01 18:39:09,143 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-01 18:39:09,143 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-01 18:39:09,143 - FLS_CLI - INFO - Reading from hardware
+2025-08-01 18:39:09,144 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-01 18:39:09,181 - Image Processor - ERROR - Error 10002: No unprocessed images found.
+Logger is defined correctly
+2025-08-01 18:39:09,184 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-01 18:39:38,222 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-01 18:39:38,231 - FLS_CLI - INFO - Program started
+2025-08-01 18:39:38,238 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-01 18:39:40,242 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-01 18:39:42,246 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-01 18:39:44,249 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-01 18:39:44,251 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-01 18:39:44,251 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-01 18:39:44,251 - FLS_CLI - INFO - Reading from hardware
+2025-08-01 18:39:44,252 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-01 18:39:44,291 - Image Processor - ERROR - Error 10002: No unprocessed images found.
+Logger is defined correctly
+2025-08-01 18:39:44,292 - FLS_CLI - ERROR - An error occurred Now: 'NoneType' object has no attribute '_fields_'
+2025-08-01 18:39:44,304 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-01 18:39:44,304 - FLS_CLI - INFO - --- Run operation completed ---
+2025-08-01 18:41:06,083 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-01 18:41:06,095 - FLS_CLI - INFO - Program started
+2025-08-01 18:41:06,103 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-01 18:41:08,106 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-01 18:41:10,112 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-01 18:41:12,115 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-01 18:41:12,116 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-01 18:41:12,116 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-01 18:41:12,117 - FLS_CLI - INFO - Reading from hardware
+2025-08-01 18:41:12,118 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-01 18:41:12,157 - Image Processor - ERROR - Error 10002: No unprocessed images found.
+Logger is defined correctly
+2025-08-01 18:41:12,158 - CIFX70E_DP - WARNING - Result struct is None; skipping copy_struct.
+2025-08-01 18:41:12,165 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-03 19:01:43,473 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-03 19:01:43,483 - FLS_CLI - INFO - Program started
+2025-08-03 19:01:43,491 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-03 19:01:45,494 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-03 19:01:47,499 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-03 19:01:49,502 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-03 19:32:16,563 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-03 19:32:16,578 - FLS_CLI - INFO - Program started
+2025-08-03 19:32:16,603 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-03 19:32:18,607 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-03 19:32:20,611 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-03 19:32:22,614 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-03 19:32:22,616 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-03 19:32:22,616 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-03 19:32:22,616 - FLS_CLI - INFO - Reading from hardware
+2025-08-03 19:32:22,617 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-03 19:32:22,670 - Image Processor - INFO - Processing latest image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:32:23,778 - Image Processor - INFO - Processed image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:32:23,778 - Image Processor - INFO - Success: True
+2025-08-03 19:32:23,778 - Image Processor - INFO - Result: <core.image_processor.PbBufOutWic object at 0x0000025E8BC4C350>
+2025-08-03 19:32:23,778 - Image Processor - INFO - Timestamp: 2025-08-03 19:32:23
+2025-08-03 19:32:23,815 - FLS_CLI - INFO - Writing back to composer operation completed.
+2025-08-03 19:32:23,816 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-03 19:32:23,816 - FLS_CLI - INFO - --- Run operation completed ---
+2025-08-03 19:36:41,618 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-03 19:36:41,632 - FLS_CLI - INFO - Program started
+2025-08-03 19:36:41,652 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-03 19:36:43,656 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-03 19:36:45,660 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-03 19:36:47,663 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-03 19:36:47,664 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-03 19:36:47,665 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-03 19:36:47,665 - FLS_CLI - INFO - Reading from hardware
+2025-08-03 19:36:47,666 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-03 19:36:47,713 - Image Processor - INFO - Processing latest image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:36:48,261 - Image Processor - INFO - Processed image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:36:48,261 - Image Processor - INFO - Success: True
+2025-08-03 19:36:48,261 - Image Processor - INFO - Result: <core.image_processor.PbBufOutWic object at 0x00000208D91302D0>
+2025-08-03 19:36:48,261 - Image Processor - INFO - Timestamp: 2025-08-03 19:36:48
+2025-08-03 19:36:48,266 - FLS_CLI - INFO - Writing back to composer operation completed.
+2025-08-03 19:36:48,266 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-03 19:36:48,267 - FLS_CLI - INFO - --- Run operation completed ---
+2025-08-03 19:38:30,021 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-03 19:38:30,044 - FLS_CLI - INFO - Program started
+2025-08-03 19:38:30,077 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-03 19:38:32,079 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-03 19:38:34,082 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-03 19:38:36,084 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-03 19:38:36,084 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-03 19:38:36,085 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-03 19:38:36,085 - FLS_CLI - INFO - Reading from hardware
+2025-08-03 19:38:36,086 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-03 19:38:36,119 - Image Processor - INFO - Processing latest image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:38:36,649 - Image Processor - INFO - Processed image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:38:36,649 - Image Processor - INFO - Success: True
+2025-08-03 19:38:36,649 - Image Processor - INFO - Result: <core.image_processor.PbBufOutWic object at 0x0000011056040350>
+2025-08-03 19:38:36,649 - Image Processor - INFO - Timestamp: 2025-08-03 19:38:36
+2025-08-03 19:38:36,655 - FLS_CLI - INFO - Writing back to composer operation completed.
+2025-08-03 19:38:36,655 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-03 19:38:36,655 - FLS_CLI - INFO - --- Run operation completed ---
+2025-08-03 19:39:33,566 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-03 19:39:33,580 - FLS_CLI - INFO - Program started
+2025-08-03 19:39:33,613 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-03 19:39:35,617 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-03 19:39:37,621 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-03 19:39:39,622 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-03 19:39:39,624 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-03 19:39:39,624 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-03 19:39:39,624 - FLS_CLI - INFO - Reading from hardware
+2025-08-03 19:39:39,626 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-03 19:39:39,672 - Image Processor - INFO - Processing latest image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:39:40,176 - Image Processor - INFO - Processed image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:39:40,176 - Image Processor - INFO - Success: True
+2025-08-03 19:39:40,176 - Image Processor - INFO - Result: <core.image_processor.PbBufOutWic object at 0x000002B8127CC1D0>
+2025-08-03 19:39:40,176 - Image Processor - INFO - Timestamp: 2025-08-03 19:39:40
+2025-08-03 19:39:40,181 - FLS_CLI - INFO - Writing back to composer operation completed.
+2025-08-03 19:39:40,181 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-03 19:39:40,181 - FLS_CLI - INFO - --- Run operation completed ---
+2025-08-03 19:42:06,954 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-03 19:42:06,968 - FLS_CLI - INFO - Program started
+2025-08-03 19:42:06,995 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-03 19:42:08,999 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-03 19:42:11,004 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-03 19:42:13,007 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-03 19:42:13,009 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-03 19:42:13,009 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-03 19:42:13,009 - FLS_CLI - INFO - Reading from hardware
+2025-08-03 19:42:13,010 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-03 19:42:13,067 - Image Processor - INFO - Processing latest image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:42:13,539 - Image Processor - INFO - Processed image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:42:13,540 - Image Processor - INFO - Success: True
+2025-08-03 19:42:13,540 - Image Processor - INFO - Result: <core.image_processor.PbBufOutWic object at 0x000001BE8D23C1D0>
+2025-08-03 19:42:13,540 - Image Processor - INFO - Timestamp: 2025-08-03 19:42:13
+2025-08-03 19:42:13,540 - FLS_CLI - INFO - Processing succeeded. Result: <core.image_processor.PbBufOutWic object at 0x000001BE8D23C1D0>
+2025-08-03 19:42:13,542 - FLS_CLI - INFO - Writing back to composer operation completed.
+2025-08-03 19:42:13,542 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-03 19:42:13,542 - FLS_CLI - INFO - --- Run operation completed ---
+2025-08-03 19:49:46,446 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-03 19:49:46,459 - FLS_CLI - INFO - Program started
+2025-08-03 19:50:32,100 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-03 19:50:32,112 - FLS_CLI - INFO - Program started
+2025-08-03 19:51:28,444 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-03 19:51:28,455 - FLS_CLI - INFO - Program started
+2025-08-03 19:52:48,744 - CIFX70E_DP - DEBUG - starting to use CIFX70E_DP module
+2025-08-03 19:52:48,755 - FLS_CLI - INFO - Program started
+2025-08-03 19:52:48,772 - CIFX70E_DP - INFO - Passed: cifX70e driver is open, continuing workflow.
+2025-08-03 19:52:50,775 - CIFX70E_DP - INFO - Passed: Card detected succesfully
+2025-08-03 19:52:52,780 - CIFX70E_DP - INFO - Passed: Device connected succesfully
+2025-08-03 19:52:54,782 - FLS_CLI - INFO - cifX70e driver is open. Give an argument to process functions
+2025-08-03 19:52:54,783 - FLS_CLI - INFO - --- Starting run operation ---
+2025-08-03 19:52:54,783 - FLS_CLI - INFO - 
+--- Starting Reading Operation ---
+2025-08-03 19:52:54,783 - FLS_CLI - INFO - Reading from hardware
+2025-08-03 19:52:54,784 - FLS_CLI - INFO - 
+--- Starting Processing Operation ---
+2025-08-03 19:52:54,804 - Image Processor - INFO - Processing latest image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:52:55,649 - Image Processor - INFO - Processed image: C:\Users\tgdev01\Documents\GitHub\fls\img\src\2025-08-01_06-57-28.png
+2025-08-03 19:52:55,650 - Image Processor - INFO - Success: True
+2025-08-03 19:52:55,650 - Image Processor - INFO - Result: <core.image_processor.PbBufOutWic object at 0x0000029818C5C350>
+2025-08-03 19:52:55,650 - Image Processor - INFO - Timestamp: 2025-08-03 19:52:55
+2025-08-03 19:52:55,650 - FLS_CLI - INFO - Processing succeeded. Result: <core.image_processor.PbBufOutWic object at 0x0000029818C5C350>
+2025-08-03 19:52:55,652 - FLS_CLI - INFO - Writing back to composer operation completed.
+2025-08-03 19:52:55,652 - FLS_CLI - INFO - cifX70e driver closed.
+2025-08-03 19:52:55,652 - FLS_CLI - INFO - --- Run operation completed ---

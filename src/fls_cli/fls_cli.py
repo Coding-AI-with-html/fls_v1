@@ -1,6 +1,7 @@
 import time
 from core import text_logger, image_processor
 from core.config import get_config_path, get_cleaned_path
+from core.system_validation import get_disk_status
 import os
 import sys
 import ctypes
@@ -79,7 +80,22 @@ def run_all_tests(szBoard,ulIOTimeout):
 
     if max_rc != 0:
         app_logger.error("")
+
         sys.exit(max_rc)
+
+
+def disk_health_checker():
+
+    #Check for disk usage and also print info about disk's
+
+    disk_info_list = get_disk_status()
+
+    for disk in disk_info_list:
+        if disk["percent"] >= 95:
+            app_logger.warning(
+                f"CRITICAL DISK USAGE: {disk['device']} ({disk['mountpoint']}) is at {disk['percent']}% usage.")
+    
+
 
 def fls_run(szBoard, ulIOTimeout, hDriver, logger, simulate_only=False, image_path=None, simulated_input=None):
     """
@@ -136,10 +152,11 @@ def fls_run(szBoard, ulIOTimeout, hDriver, logger, simulate_only=False, image_pa
         success, result = image_processor.getResult(image_context, image_path)
 
         if success and result:
-            logger.info("Processing succeeded. Result:", result)
+            app_logger.info(f"Processing succeeded. Result: {result}")
             print("Processing succeeded. Result:", result)
         else:
             print("Processing failed. Check logfile.")
+            CIFX70E_DP.WIC_SendToMaster(hDriver, szBoard, ulIOTimeout, result)
             sys.exit(1)
 
         # 3. Write operation
@@ -151,11 +168,12 @@ def fls_run(szBoard, ulIOTimeout, hDriver, logger, simulate_only=False, image_pa
 
             # Increment overall operation ID if all steps succeed
         else:
-            logger.warning("Write operation skipped due to processing failure.")
+            app_logger.warning("Write operation skipped due to processing failure.")
             print("Write operation skipped due to processing failure.")
 
     except Exception as e:
-        logger.error(f"An error occurred Now: {e}")
+        app_logger.error(f"An error occurred Now: {e}")
+        app_logger.exception("Detailed traceback:")
         print(f"An error occurred Now: {e}")
         traceback.print_exc() 
         return_code = 2
@@ -357,6 +375,11 @@ def main():
         #print(f"Total Process Operations: {image_context.process_count}")
        # print(f"Total Write Operations: {image_context.write_count}")
         #print(f"Overall Operation ID: {image_context.id}")
+
+        # Save counters to the file
+        app_logger.info("Operation haved finished")
+
+        # Close the driver
    
 
 if __name__ == "__main__":
@@ -364,6 +387,7 @@ if __name__ == "__main__":
     # main fls function
     exit_code=main()
   except:
+    app_logger.info("Program closed")
     print('Exit application.')
     #app_logger.exception('Exit application.')
     exit_code=4

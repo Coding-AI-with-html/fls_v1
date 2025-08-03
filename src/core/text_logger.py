@@ -174,7 +174,7 @@ class ErrorContext:
             except Exception as e:
                 print(f"Failed to write to log file '{self.log_filename}': {e}")
     @staticmethod        
-    def get_error_string(error_index, locale="en-US", locale_filename = "text_logger"):
+    def get_error_string(error_index, locale="en-US", locale_filename =""):
         """
         Defines error messages based on the error index(Needs more error_messages)
         IF there is a filename, then read it, and if there is not, then use context isntead of predifiend of error messages

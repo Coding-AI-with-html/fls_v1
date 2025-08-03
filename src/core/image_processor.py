@@ -473,15 +473,49 @@ def create_log_same_folder(data, base_directory):
     logger.addHandler(fh)
 
     logger.info(data)
+def failed_processing_result():
+    now = datetime.datetime.now()
 
+    # Fill timestamp fields
+    pb_buf_di_wic.year = now.year
+    pb_buf_di_wic.month = now.month
+    pb_buf_di_wic.day = now.day
+    pb_buf_di_wic.hours = now.hour
+    pb_buf_di_wic.minutes = now.minute
+    pb_buf_di_wic.seconds = now.second
 
+    
+    pb_buf_di_wic.interval1 = pb_buf_do_wic.interval1
+    pb_buf_di_wic.interval2 = pb_buf_do_wic.interval2
+    pb_buf_di_wic.interval3 = pb_buf_do_wic.interval3
+    pb_buf_di_wic.interval4 = pb_buf_do_wic.interval4
+
+    pb_buf_di_wic.state1 = 1
+    pb_buf_di_wic.state2 = 0
+
+    pb_buf_di_wic.value_13 = 0
+    pb_buf_di_wic.value_14 = 0
+    pb_buf_di_wic.value_15 = 0
+    pb_buf_di_wic.value_16 = 0
+
+    for i in range(TRACKS_PER_VIEW_MAX):
+        pb_buf_di_wic.pv1[i] = 0
+        pb_buf_di_wic.pvq1[i] = 0
+        pb_buf_di_wic.pv2[i] = 0
+        pb_buf_di_wic.pvq2[i] = 0
+        pb_buf_di_wic.pv3[i] = 0
+        pb_buf_di_wic.pvq3[i] = 0
+        pb_buf_di_wic.pv4[i] = 0
+        pb_buf_di_wic.pvq4[i] = 0
+
+    return False, None
 
 def put_proccesed_image_into_sub_today_folder(image_path, base_dir):
     try:
         shutil.move(image_path, base_dir)
     except Exception as e:
         print(f"Could not move image '{image_path}' to '{base_dir}': {e}")
-        loggerProgram.warning(f"Could not move image '{image_path}' to '{base_dir}': {e}")
+        loggerProgram.warning("Could not move image")
 
 def create_folder_for_today(plot, filename, base_dir):
     # Get the current date and format it as 'DD-MM'
@@ -1118,8 +1152,8 @@ def print_image_context(image_context):
         loggerProgram.debug("No setpoints data in image_context.")
 
 def getResult(image_context, images_directory):
-    logger = get_logger("Image Processor")
-    error_context = ErrorContext(logger=logger)
+    ErrorLogger = get_logger("Image Processor")
+    error_context = ErrorContext(logger=ErrorLogger)
 
     if not image_context or not image_context.data_read:
         logger.error("There is no processed image to take context")
@@ -1129,14 +1163,14 @@ def getResult(image_context, images_directory):
     update_pb_in_struct(image_context)
 
     if latest_image:
-        logger.info(f"Processing latest image: {latest_image}")
+        ErrorLogger.info(f"Processing latest image: {latest_image}")
         try:
             success, result = process_image_with_multiple_sub_images(image_context, latest_image, images_directory)
 
-            logger.info(f"Processed image: {latest_image}")
-            logger.info(f"Success: {success}")
-            logger.info(f"Result: {result}")
-            logger.info(f"Timestamp: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+            ErrorLogger.info(f"Processed image: {latest_image}")
+            ErrorLogger.info(f"Success: {success}")
+            ErrorLogger.info(f"Result: {result}")
+            ErrorLogger.info(f"Timestamp: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
             try:
                 with open(config_path, 'r') as f:
@@ -1146,7 +1180,7 @@ def getResult(image_context, images_directory):
             except e:
                 print("Error on config", e)
 
-            put_proccesed_image_into_sub_today_folder(latest_image, root_result_path)
+            #put_proccesed_image_into_sub_today_folder(latest_image, root_result_path)
             check_time_to_move_unprocessed_files(images_directory)
             return success, result
 
@@ -1154,13 +1188,14 @@ def getResult(image_context, images_directory):
             error = FLS_ERR_ImageProcessingFailed
             errordescription = f"{error_context.get_error_string(FLS_ERR_ImageProcessingFailed)}: {str(e)}"
             error_context.log_error()
-            logger.exception("Image processing failed due to an exception.")
-            return False, None
+            ErrorLogger.exception("Image processing failed due to an exception.")
+            return failed_processing_result()
     else:
+        result = failed_processing_result()
         error_context.error = FLS_ERR_NoUnprocessedImage
         error_context.errordescription = error_context.get_error_string(FLS_ERR_NoUnprocessedImage)
         error_context.log_error()
-        return False, None
+        return result
 
 
 def get_cleaned_path(section, key):

@@ -809,8 +809,13 @@ def WIC_SendToMaster(hDriver, szBoard, ulWaitTimeout, result):
     #master = PbBufOutWic()
     slave = PbBufInWic()
     print(hDriver, szBoard, ulWaitTimeout)
-    copy_struct(master, result)
-    cifx_logger.debug(print_PbBufOutWic(master))
+    if result is not None:
+        copy_struct(master, result)
+    else:
+        print("Result struct is None; skipping copy_struct.")
+
+   # if cifx_logger.isEnabledFor(cifx_logger.DEBUG):
+    # print_PbBufOutWic(master)
 
     
     if ctypes.sizeof(master) > 244:
@@ -871,7 +876,8 @@ def WIC_SendToMaster(hDriver, szBoard, ulWaitTimeout, result):
     else:
         print("\nSendToMaster: Data SENT successfully.\n")
         #ctypes.memmove(ctypes.addressof(master), abWriteIOBuffer, ctypes.sizeof(master))
-        cifx_logger.debug(print_PbBufOutWic(master))
+       # if cifx_logger.isEnabledFor(cifx_logger.DEBUG):
+        #print_PbBufOutWic(master)
 
     # Optionally, read back the data to verify correct handling
     lRet = wic_dll.xChannelIORead(hDevice, 0, 0, SIZE_BUFFER_IN, abReadIOBuffer, ulWaitTimeout)
@@ -882,7 +888,8 @@ def WIC_SendToMaster(hDriver, szBoard, ulWaitTimeout, result):
         print("READ Buffer back from Master:\n")
 
         ctypes.memmove(ctypes.addressof(slave), abReadIOBuffer, ctypes.sizeof(slave))
-        cifx_logger.debug(WIC_PrintPBStruct(slave))
+        #if cifx_logger.isEnabledFor(cifx_logger.DEBUG):
+        #WIC_PrintPBStruct(slave)
 
     # Close the channel
     if hDevice is not None:
