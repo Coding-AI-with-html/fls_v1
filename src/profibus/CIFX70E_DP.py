@@ -8,8 +8,11 @@ import os
 import sys
 import time
 from .Definitions import SystemChannelSystemInfoBlock, DriverInformation, BoardInformation, ChannelInformation, PbBufInWic, PbBufOutWic, PbBufOutWicData
+from profibus import Definitions
 from .fls_simulator import ctypes_to_dataclass, SimulatedData, save_state
 from core import text_logger
+from core.fls_data_io import DataIn,DataOut
+
 
 
 
@@ -408,6 +411,17 @@ def test_no_connection(szBoard,ulIOTimeout):
         return 0
 
 
+def struct_to_dict(struct):
+    result = {}
+    for field_name, field_type in struct._fields_:
+        value = getattr(struct, field_name)
+        if isinstance(value, ctypes.Array): 
+            result[field_name] = list(value)
+        else:
+            result[field_name] = value
+    return result
+
+read_data = []
 
 def FLS_ReadIOData(hDriver, szBoard, ulWaitTimeout, times):
 
@@ -468,8 +482,15 @@ def FLS_ReadIOData(hDriver, szBoard, ulWaitTimeout, times):
             show_error(lRet)
         
         #WIC_print_buffer(abReadIOBuffer, ctypes.sizeof(abReadIOBuffer))
+        #ctypes.memmove(ctypes.addressof(slave), abReadIOBuffer, ctypes.sizeof(slave))
+
+        slavery = DataIn()
+
         ctypes.memmove(ctypes.addressof(slave), abReadIOBuffer, ctypes.sizeof(slave))
-        WIC_PrintPBStruct(slave)
+        read_data = struct_to_dict(slave)
+        with open("buffer_reads.json", "w") as f:
+            json.dump(read_data, f, indent=4)
+        #WIC_PrintPBStruct(slave)
 
         sim_data = ctypes_to_dataclass(slave, SimulatedData)
         save_state(sim_data)
@@ -502,9 +523,6 @@ def FLS_ReadIOData(hDriver, szBoard, ulWaitTimeout, times):
     # Cleanup
     if hDevice != None:
         wic_dll.xChannelClose(hDevice)
-
-def FLS_Run(hDriver, szBoard, ulIOTimeout, result):
-    print(result)
 
 def main():
 
@@ -568,7 +586,10 @@ def FLS_ReadSingleIOData(hDriver, szBoard, ulWaitTimeout):
     lRet = wic_dll.xChannelIORead(hDevice, 0, 0, SIZE_BUFFER_IN, ctypes.byref(abReadIOBuffer), ulWaitTimeout)
     if lRet == CIFX_NO_ERROR:
         ctypes.memmove(ctypes.addressof(slave), abReadIOBuffer, ctypes.sizeof(slave))
-
+        new_interval_ms = max(1000, slave.interval1 * 1000)
+        #print("INTERVAL:", new_interval_ms)
+        Definitions.LIVE_UPDATE_INTERVAL = new_interval_ms
+    
     wic_dll.xChannelClose(hDevice)
     return slave
 
@@ -814,8 +835,11 @@ def WIC_SendToMaster(hDriver, szBoard, ulWaitTimeout, result):
     else:
         print("Result struct is None; skipping copy_struct.")
 
+
+    
+
    # if cifx_logger.isEnabledFor(cifx_logger.DEBUG):
-    # print_PbBufOutWic(master)
+    print_PbBufOutWic(master)
 
     
     if ctypes.sizeof(master) > 244:
@@ -866,6 +890,9 @@ def WIC_SendToMaster(hDriver, szBoard, ulWaitTimeout, result):
     #WIC_print_buffer(result)
 
     ctypes.memmove(abWriteIOBuffer, ctypes.byref(master), ctypes.sizeof(master))
+    write_data = struct_to_dict(master)
+    with open("buffer_writes.json", "w") as f:
+        json.dump(write_data, f, indent=4)
     
     #print("Buffer before memmove:", list(abWriteIOBuffer[:ctypes.sizeof(master)]))
 
@@ -877,7 +904,7 @@ def WIC_SendToMaster(hDriver, szBoard, ulWaitTimeout, result):
         print("\nSendToMaster: Data SENT successfully.\n")
         #ctypes.memmove(ctypes.addressof(master), abWriteIOBuffer, ctypes.sizeof(master))
        # if cifx_logger.isEnabledFor(cifx_logger.DEBUG):
-        #print_PbBufOutWic(master)
+        print_PbBufOutWic(master)
 
     # Optionally, read back the data to verify correct handling
     lRet = wic_dll.xChannelIORead(hDevice, 0, 0, SIZE_BUFFER_IN, abReadIOBuffer, ulWaitTimeout)

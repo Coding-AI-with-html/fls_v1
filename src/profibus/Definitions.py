@@ -9,6 +9,9 @@ TRACKS_PER_VIEW_MAX = 8
 TIMECAPS = ctypes.Structure
 CIFX_MAX_INFO_NAME_LENGTH = 16
 
+#live_update_interval = 15000
+LIVE_UPDATE_INTERVAL = 15000
+
 # Define the DRIVER_INFORMATION structure
 class DriverInformation(ctypes.Structure):
     _pack_ = 1  # Packed structure

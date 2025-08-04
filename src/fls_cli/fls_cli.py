@@ -61,6 +61,7 @@ except configparser.Error as e:
 
 
 def run_all_tests(szBoard,ulIOTimeout):
+    disk_health_checker()
     print("=== Starting Hardware Detection Tests ===\n")
 
 

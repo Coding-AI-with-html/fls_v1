@@ -94,6 +94,24 @@ class RotatingTextFileHandler(logging.FileHandler):
 
 _logger_registry = {}
 
+
+class AlignedNameFormatter(logging.Formatter):
+    def __init__(self, fmt=None, datefmt=None, name_width=16, level_width=8):
+        super().__init__(fmt, datefmt)
+        self.name_width = name_width
+        self.level_width = level_width
+
+    def format(self, record):
+        original_name = record.name
+        original_level = record.levelname
+        record.name = f"{record.name:<{self.name_width}}"
+        record.levelname = f"{record.levelname:<{self.level_width}}"
+        formatted = super().format(record)
+        record.name = original_name  # reset to original to avoid side effects
+        record.levelname = original_level
+        return formatted
+
+
 def get_logger(name=None,level=logging.DEBUG):
     """
     Returns a logger named after the calling module.
@@ -115,7 +133,12 @@ def get_logger(name=None,level=logging.DEBUG):
         log_path = create_logfile_name(sub_dir='log', suffix='.log')
         os.makedirs(log_path.parent, exist_ok=True)
         handler = RotatingTextFileHandler(log_path, max_lines=1000)
-        formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+        formatter = AlignedNameFormatter(
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+            name_width=16,   # adjust based on longest name
+            level_width=4    # INFO, DEBUG, WARNING aligment for width
+        )
+
         handler.setFormatter(formatter)
         logger.addHandler(handler)
 

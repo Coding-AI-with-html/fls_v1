@@ -13,7 +13,6 @@ import os
 from datetime import datetime, date
 import sys
 import cv2
-import pkgutil
 import numpy as np
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from core.config import get_config_path
@@ -32,6 +31,7 @@ image = None
 
 FLS_UPDATE_LIVE_MILISECONDS = 15000 
 FLS_CALIBRATION_FILE_NAME = r"config/default_view_image.png"
+LIVE_UPDATE_INTERVAL = 15000 
 
 
 class ImageContext:
@@ -173,6 +173,8 @@ class LogfileViewerApp(tk.Frame):
 
         # Create UI elements
         self.create_widgets()
+        update_live_interval_from_profibus()
+        self.refresh_live_view_label()
 
         # Display log entries based on current date and time
         self.set_default_filters()
@@ -274,9 +276,9 @@ class LogfileViewerApp(tk.Frame):
 
         # Live View Toggle
         self.live_view_var = tk.BooleanVar()
-        live_view_checkbox = ttk.Checkbutton(filter_path_frame, text=f"Live View {int(FLS_UPDATE_LIVE_MILISECONDS / 1000)} sec", variable=self.live_view_var, command=self.toggle_live_view)
+        self.live_view_checkbox = ttk.Checkbutton(filter_path_frame, text=f"Live View {int(LIVE_UPDATE_INTERVAL / 1000)} sec", variable=self.live_view_var, command=self.toggle_live_view)
         #live_view_checkbox.grid(row=2, column=0, columnspan=1, pady=5)
-        live_view_checkbox.pack(side=tk.LEFT, padx=2)
+        self.live_view_checkbox.pack(side=tk.LEFT, padx=2)
 
 
 
@@ -596,30 +598,39 @@ class LogfileViewerApp(tk.Frame):
             # Enable editing on SP fields again
             self.set_setpoints_editable(True)
 
+    def refresh_live_view_label(self):
+        global LIVE_UPDATE_INTERVAL
+        new_text = f"Live View {int(LIVE_UPDATE_INTERVAL / 1000)} sec"
+        self.live_view_checkbox.config(text=new_text)
 
     def update_logfile_live(self):
+        global LIVE_UPDATE_INTERVAL
+
         if not self.live_view_enabled:
             return
+
         # Reload the logfile
         try:
             self.headers, self.log_entries = load_logfile(logfile_path)
         except Exception as e:
             print(f"Failed to reload logfile: {e}")
-            self.after(FLS_UPDATE_LIVE_MILISECONDS, self.update_logfile_live)
-            return
 
-        # Update GUI
+        # Dynamically update interval
+        update_live_interval_from_profibus()
+
+        self.refresh_live_view_label()
+
         latest_entry = self.get_latest_log_entry_with_setpoints()
         if latest_entry:
             self.populate_latest_valid_data([latest_entry])
-            self.display_log_entries(self.log_entries) 
+            self.display_log_entries(self.log_entries)
             self.update_image_view(latest_entry)
         else:
-            # No setpoints found yet, still update GUI with blanks
             self.populate_latest_valid_data([])
 
         if self.live_view_enabled:
-            self.after(FLS_UPDATE_LIVE_MILISECONDS, self.update_logfile_live)
+            print(f"[GUI] Next update in {LIVE_UPDATE_INTERVAL} ms")
+            self.after(LIVE_UPDATE_INTERVAL, self.update_logfile_live)
     
     def update_info(self):
 
@@ -1112,6 +1123,38 @@ def auto_crop_image(image_path):
     else:
         return img  # fallback if no bounding box is found
 
+
+def update_live_interval_from_profibus():
+    """
+    Read interval1 from Profibus and update LIVE_UPDATE_INTERVAL.
+    """
+    global LIVE_UPDATE_INTERVAL
+
+    config = get_fls_config()
+    board = config["szBoard"]
+    firmware_path = config["szFirmwareFile"]
+    timeout = config["ulIOTimeout"]
+
+    CIFXHANDLE = ctypes.c_void_p
+    hDriver = CIFXHANDLE(None)
+    #make  fls_cli run with arg img, sp1 or sp2 or other sp to run image process 
+    # Open the driver
+    if CIFX70E_DP.wic_dll.xDriverOpen(ctypes.byref(hDriver)) != CIFX70E_DP.CIFX_NO_ERROR:
+        print("Failed to open cifX70e driver,can only operate on simulation mode")
+        pass
+        sys.exit(1)
+    else:
+
+        slave = CIFX70E_DP.FLS_ReadSingleIOData(hDriver, board, timeout)
+
+        if slave:
+            new_interval = max(1000, slave.interval1 * 1000)
+            if new_interval != LIVE_UPDATE_INTERVAL:
+                print(f"[Profibus] Updating LIVE_UPDATE_INTERVAL from {LIVE_UPDATE_INTERVAL} → {new_interval}")
+                LIVE_UPDATE_INTERVAL = new_interval
+        else:
+            print("[Profibus] Failed to read interval1.")
+    
 def run_simulated_data(picked_image, images_directory):
     config = get_fls_config()
     board = config["szBoard"]
