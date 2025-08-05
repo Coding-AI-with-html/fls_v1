@@ -1191,7 +1191,7 @@ def getResult(image_context, images_directory):
             return success, result
 
         except Exception as e:
-            print_image_context(image_context=image_context)
+            false, result = failed_processing_result(image_context)
             error = FLS_ERR_ImageProcessingFailed
             errordescription = f"{error_context.get_error_string(FLS_ERR_ImageProcessingFailed)}: {str(e)}"
             error_context.log_error()
@@ -1199,7 +1199,6 @@ def getResult(image_context, images_directory):
             false, result = failed_processing_result(image_context)
             return false, result
     else:
-        print_image_context(image_context=image_context)
         false, result = failed_processing_result(image_context)
         error_context.error = FLS_ERR_NoUnprocessedImage
         error_context.errordescription = error_context.get_error_string(FLS_ERR_NoUnprocessedImage)

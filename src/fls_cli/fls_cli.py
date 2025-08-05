@@ -158,7 +158,7 @@ def fls_run(szBoard, ulIOTimeout, hDriver, logger, simulate_only=False, image_pa
         else:
             print("Processing failed. Check logfile.")
             CIFX70E_DP.WIC_SendToMaster(hDriver, szBoard, ulIOTimeout, result)
-            sys.exit(1)
+            #sys.exit(1)
 
         # 3. Write operation
         print("\n--- Starting Writing Operation ---")
@@ -390,7 +390,6 @@ if __name__ == "__main__":
   except:
     app_logger.info("Program closed")
     print('Exit application.')
+    sys.exit(0)
     #app_logger.exception('Exit application.')
-    exit_code=4
-    sys.exit(exit_code)
-  os._exit(exit_code)  # Exit with the return code from main
+    #  # Exit with the return code from main

@@ -22,6 +22,7 @@ from tkcalendar import DateEntry
 from pathlib import Path
 from fls_cli.fls_cli import get_fls_config
 from profibus import CIFX70E_DP
+import json
 config = configparser.ConfigParser()
 config_path = get_config_path()
 config.read(config_path)
@@ -29,10 +30,10 @@ print("Config path", config_path)
 
 image = None 
 
-FLS_UPDATE_LIVE_MILISECONDS = 15000 
 FLS_CALIBRATION_FILE_NAME = r"config/default_view_image.png"
 LIVE_UPDATE_INTERVAL = 15000 
-
+JSON_FILE_PATH = "../buffer_reads.json"
+JSON_WRITE_FILE_PATH = "../buffer_writes.json"
 
 class ImageContext:
     def __init__(self):
@@ -152,6 +153,9 @@ class LogfileViewerApp(tk.Frame):
 
         self.pv_entries = []
 
+        self.current_state1_file1 = None
+        self.current_state1_file2 = None
+
         if today_subfolder.exists():
             self.current_image_folder = today_subfolder
         else:
@@ -175,6 +179,7 @@ class LogfileViewerApp(tk.Frame):
         self.create_widgets()
         update_live_interval_from_profibus()
         self.refresh_live_view_label()
+        self.read_json_file()
 
         # Display log entries based on current date and time
         self.set_default_filters()
@@ -207,6 +212,9 @@ class LogfileViewerApp(tk.Frame):
 
         view_original_frame = ttk.Frame(view_frame)
         view_original_frame.pack(anchor='w', pady=(10, 0))
+
+        timestamp_frame = ttk.Frame(self)
+        timestamp_frame.pack(side=tk.BOTTOM, fill=tk.X, expand=False, padx=10, pady=3)
         
 
 
@@ -280,6 +288,12 @@ class LogfileViewerApp(tk.Frame):
         #live_view_checkbox.grid(row=2, column=0, columnspan=1, pady=5)
         self.live_view_checkbox.pack(side=tk.LEFT, padx=2)
 
+        self.label_file1 = tk.Label(filter_frame_top, text="Read state1:", font=("Arial", 12))
+        self.label_file1.pack(side=tk.LEFT, padx=2)
+
+        self.label_file2 = tk.Label(filter_frame_top, text="Write state1:", font=("Arial", 12))
+        self.label_file2.pack(side=tk.LEFT, padx=2)
+
 
 
         reset_folder_button = ttk.Button(filter_path_frame, text="Image Root",command=self.reset_default_folder)
@@ -326,9 +340,6 @@ class LogfileViewerApp(tk.Frame):
         self.image_label_original = ttk.Label(view_frame)
         self.image_label_original.pack(side=tk.RIGHT, padx=10)
 
-
-
-
         self.sp_label_widgets = []
 
         self.pv_label_widgets = []
@@ -365,6 +376,12 @@ class LogfileViewerApp(tk.Frame):
             entry.bind("<FocusIn>", lambda event, idx=i: self.on_entry_focus_in(idx))
             entry.bind("<FocusOut>", lambda event, idx=i: self.on_entry_focus_out(idx))
 
+        
+        self.label_timestamp1 = tk.Label(timestamp_frame, text="Timestamp Read:", font=("Arial", 10))
+        self.label_timestamp1.pack(side=tk.LEFT, padx=2)
+
+        self.label_timestamp2 = tk.Label(timestamp_frame, text="Timestamp Write:", font=("Arial", 10))
+        self.label_timestamp2.pack(side=tk.LEFT, padx=2)
         # Create a Treeview for log entries with columns
         self.log_entries_frame = ttk.Frame(content_frame, padding="10")
         self.log_entries_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
@@ -631,6 +648,53 @@ class LogfileViewerApp(tk.Frame):
         if self.live_view_enabled:
             print(f"[GUI] Next update in {LIVE_UPDATE_INTERVAL} ms")
             self.after(LIVE_UPDATE_INTERVAL, self.update_logfile_live)
+
+    
+    def read_json_file(self):
+        try:
+            with open(JSON_FILE_PATH, "r") as file, open(JSON_WRITE_FILE_PATH, "r") as file2:
+                read_data = json.load(file)
+                write_data = json.load(file2)
+
+            # Expecting dict not list:
+            new_state1_file1 = read_data.get("state1") if isinstance(read_data, dict) else None
+            if new_state1_file1 is None:
+                print("Not getting Rfile state")
+
+            if all(k in read_data for k in ["year", "month", "day", "hours", "minutes", "seconds"]):
+                read_time = f'{read_data["year"]:04d}-{read_data["month"]:02d}-{read_data["day"]:02d} ' \
+                            f'{read_data["hours"]:02d}:{read_data["minutes"]:02d}:{read_data["seconds"]:02d}'
+                self.label_timestamp1.config(text=f"Read time: {read_time}")
+            else:
+                self.label_timestamp1.config(text="Read time: N/A")
+
+            new_state1_file2 = write_data.get("state1") if isinstance(write_data, dict) else None
+            if new_state1_file2 is None:
+                print("Not getting Wfile state")
+
+            if all(k in write_data for k in ["year", "month", "day", "hours", "minutes", "seconds"]):
+                write_time = f'{write_data["year"]:04d}-{write_data["month"]:02d}-{write_data["day"]:02d} ' \
+                            f'{write_data["hours"]:02d}:{write_data["minutes"]:02d}:{write_data["seconds"]:02d}'
+                self.label_timestamp2.config(text=f"Write time: {write_time}")
+            else:
+                self.label_timestamp2.config(text="Write time: N/A")
+
+            
+
+            if new_state1_file1 != getattr(self, 'current_state1_file1', None):
+                self.current_state1_file1 = new_state1_file1
+                self.label_file1.config(text=f"Read state1: {hex(self.current_state1_file1)}")
+
+            if new_state1_file2 != getattr(self, 'current_state1_file2', None):
+                self.current_state1_file2 = new_state1_file2
+                self.label_file2.config(text=f"Write state1: {hex(self.current_state1_file2)}")
+
+        except Exception as e:
+            print(f"Error reading JSON: {e}")
+
+        self.after(2000, self.read_json_file)
+
+
     
     def update_info(self):
 

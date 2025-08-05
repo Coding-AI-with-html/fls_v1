@@ -421,9 +421,10 @@ def struct_to_dict(struct):
             result[field_name] = value
     return result
 
-read_data = []
 
 def FLS_ReadIOData(hDriver, szBoard, ulWaitTimeout, times):
+
+    read_data_continuisly = []
 
     # Buffers to hold data
     lRet = CIFX_NO_ERROR
@@ -482,14 +483,11 @@ def FLS_ReadIOData(hDriver, szBoard, ulWaitTimeout, times):
             show_error(lRet)
         
         #WIC_print_buffer(abReadIOBuffer, ctypes.sizeof(abReadIOBuffer))
-        #ctypes.memmove(ctypes.addressof(slave), abReadIOBuffer, ctypes.sizeof(slave))
-
-        slavery = DataIn()
-
         ctypes.memmove(ctypes.addressof(slave), abReadIOBuffer, ctypes.sizeof(slave))
-        read_data = struct_to_dict(slave)
+        WIC_PrintPBStruct(slave)
+        read_data_continuisly  = struct_to_dict(slave)
         with open("buffer_reads.json", "w") as f:
-            json.dump(read_data, f, indent=4)
+            json.dump(read_data_continuisly, f, indent=4)
         #WIC_PrintPBStruct(slave)
 
         sim_data = ctypes_to_dataclass(slave, SimulatedData)
@@ -567,6 +565,8 @@ def main():
 
 
 def FLS_ReadSingleIOData(hDriver, szBoard, ulWaitTimeout):
+
+    read_data = []
     
     lRet = CIFX_NO_ERROR
     abReadIOBuffer = (ctypes.c_byte * (SIZE_BUFFER_IN * 2))()
@@ -586,6 +586,10 @@ def FLS_ReadSingleIOData(hDriver, szBoard, ulWaitTimeout):
     lRet = wic_dll.xChannelIORead(hDevice, 0, 0, SIZE_BUFFER_IN, ctypes.byref(abReadIOBuffer), ulWaitTimeout)
     if lRet == CIFX_NO_ERROR:
         ctypes.memmove(ctypes.addressof(slave), abReadIOBuffer, ctypes.sizeof(slave))
+
+        read_data = struct_to_dict(slave)
+        with open("buffer_reads.json", "w") as f:
+            json.dump(read_data, f, indent=4)
         new_interval_ms = max(1000, slave.interval1 * 1000)
         #print("INTERVAL:", new_interval_ms)
         Definitions.LIVE_UPDATE_INTERVAL = new_interval_ms
@@ -822,6 +826,8 @@ def print_PbBufOutWic(master):
 
 def WIC_SendToMaster(hDriver, szBoard, ulWaitTimeout, result):
 
+    send_data = []
+
     lRet = CIFX_NO_ERROR
     abWriteIOBuffer = (ctypes.c_byte * SIZE_BUFFER_OUT)() # Buffer to hold the data to write
     abReadIOBuffer = (ctypes.c_byte * SIZE_BUFFER_IN)()
@@ -839,7 +845,7 @@ def WIC_SendToMaster(hDriver, szBoard, ulWaitTimeout, result):
     
 
    # if cifx_logger.isEnabledFor(cifx_logger.DEBUG):
-    print_PbBufOutWic(master)
+    #print_PbBufOutWic(master)
 
     
     if ctypes.sizeof(master) > 244:
@@ -890,9 +896,10 @@ def WIC_SendToMaster(hDriver, szBoard, ulWaitTimeout, result):
     #WIC_print_buffer(result)
 
     ctypes.memmove(abWriteIOBuffer, ctypes.byref(master), ctypes.sizeof(master))
-    write_data = struct_to_dict(master)
+    
+    send_data = struct_to_dict(master)
     with open("buffer_writes.json", "w") as f:
-        json.dump(write_data, f, indent=4)
+        json.dump(send_data, f, indent=4)
     
     #print("Buffer before memmove:", list(abWriteIOBuffer[:ctypes.sizeof(master)]))
 
